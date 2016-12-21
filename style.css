@@ -1,0 +1,66 @@
+#title{
+  background-color: #002366;
+  color: #ffffff;
+}
+#titleText{
+  text-align: center;
+  font-family: 'Cormorant Infant', serif;
+  font-weight: bold;
+  margin-bottom: 0px;
+  font-size: 70px;
+}
+#newspaperIcon{
+  float: left;
+  position: absolute;
+  margin-top: 20px;
+}
+.panel > .panel-heading {
+    background-image: none;
+    background-color: #002366;
+    color: white;
+
+}
+.btn{
+ float: right;
+}
+#clickToSearch{
+  margin-right: 50px;
+  margin-left: 20px;
+}
+.search{
+  width: 80%;
+}
+.headline{
+  font-family: 'Cormorant Infant', serif;
+}
+.summary{
+  font-family: 'Slabo 27px', serif;
+}
+.url{
+  font-family: 'Slabo 27px', serif;
+}
+
+@media screen and (max-width: 980px){
+  #titleText{
+  font-size: 45px;
+  margin-left: 50px; 
+}
+#newspaperIcon{
+  float: left;
+  position: absolute;
+  margin-top: 5px;
+}
+@media screen and (max-width: 768px){
+  #newspaperIcon{
+  float: left;
+  position: absolute;
+  margin-top: 0px;
+  margin-left: 20px;
+}
+}
+@media screen and (max-width: 640px){
+  #titleText{
+  font-size: 40px;
+  margin-left: 80px; 
+}
+  }

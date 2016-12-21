@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>News Search</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+        <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript"></script>
+        <script src="https://use.fontawesome.com/b3d70bac42.js"></script>
+        <link rel ="stylesheet" href="style.css">
+        <link rel ="stylesheet" href="reset.css">
+        <link href="https://fonts.googleapis.com/css?family=Cormorant+Infant:700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+        </head>
+  <body>
+    <div class = "container">
+      <div id = "title" class ="jumbotron">
+         <i id = "newspaperIcon" class="fa fa-newspaper-o fa-5x"></i>
+          <p id = "titleText" class = "text-center" >New York Times Search</p>
+      </div>
+    </div>
+    <div class = "container">
+       <div id = "searchparam" class="panel panel-default">
+        <div  id = "searchParamTitle" class = "panel-heading ">
+           <strong class = "text-center">
+              <span id = "listicon" class = "glyphicon glyphicon-list-alt"></span>
+              Search Parameters
+           </strong>
+              </div>
+        <div class="panel-body">
+          <div id = "term" class = "container search">
+            <h5>Search Term: </h5>
+              <input id="sTerm" type="text" class="form-control" placeholder="Search Term">
+            </div>
+                <div id = "breaks" class = "container">
+                 <div class = "row">
+                    <br>
+                  </div>
+                </div>
+          <div id = "records" class = "container search">
+            <h5>Number of Records to Retrieve </h5>
+              <input id="numRecords" type="text" class="form-control" placeholder="Number">
+          </div>
+              <div id = "breaks" class = "container" >
+                <div class = "row">
+                  <br>
+                </div>
+              </div>
+          <div id = "start" class = "container search" >
+            <h5>Start Year (Optional): </h5>
+              <input id="sYear" type="text" class="form-control" placeholder="YYYYMMDD">
+          </div>
+              <div id = "breaks" class = "container" >
+                <div class = "row">
+                  <br>
+                </div>
+              </div>
+          <div id = "start" class = "container search" >
+            <h5>End Year (Optional): </h5>
+              <input id="eYear" type="text" class="form-control" placeholder="YYYYMMDD">
+          </div>
+              <div id = "breaks" class = "container" >
+                <div class = "row">
+                <br>
+                </div>
+              </div>
+                <div id = "breaks" class = "container" >
+                <div class = "row">
+                <br>
+                </div>
+              </div>
+          <div id = "buttonplace" class = "container" >
+            <button id="clickToSearch" class="btn btn-default" type="submit">
+              <span id = "searchicon" class = "glyphicon glyphicon-search"></span>
+                Search
+            </button>
+            <button id="clickToClear" class="btn btn-default" type="submit">
+            <span id = "trashicon" class = "glyphicon glyphicon-trash"></span>
+                Clear Results
+            </button>
+          </div>
+        </div>
+      </div>
+   </div>
+  <div class = "container">
+    <div id = "results-panel" class = "panel panel-default">
+      <div class = "panel-heading">
+        <strong class = "text-center">Results:</strong>
+      </div>
+          <div id= "results" class = "panel-body">
+              <div id = "resultsHere" class = "results">
+              </div>
+          </div>
+
+      </div>
+    </div>
+
+<script>
+
+  $("#clickToSearch").on("click", function (){
+  
+    var searchFor = $('#sTerm')[0].value
+    var numRecs = parseInt($('#numRecords')[0].value)
+    var bDate = ($('#sYear')[0].value)
+    var eDate = parseInt($('#eYear')[0].value)
+     
+  
+    var  appKey = "bd02f499a8474a05bd68ce25460bbc9f"
+  
+    var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";  
+      url += "?api-key=" +appKey
+      url += "&q=" + searchFor  
+      
+      if(bDate !== "" && eDate !== ""){
+
+        url += "&begin_date=" + bDate
+        url += "&end_date" + eDate
+      }  
+    
+  
+      $.ajax({
+        url: url,
+        method: 'GET',
+      }).done(function(results) { 
+          //console log url 
+          console.log(url); 
+        
+         
+        
+          //store response results in result variable 
+          var searchResults = results; 
+          console.log(searchResults);
+         
+       
+          for (var i = 0;  i < numRecs; i++) {
+            var x = parseInt(i)+ 1;
+            console.log(x);
+            $('#resultsHere').append('<a href = "'+ searchResults.response.docs[i].web_url+'"' + 'class = "headline">' + searchResults.response.docs[i].headline.main + "</a>");
+            $('#resultsHere').append('<p class = "summary">' + searchResults.response.docs[i].snippet + "</p>")
+          }
+  
+  
+        })
+        
+      .fail(function(err) { 
+        throw err;
+      });
+  
+  });
+
+  $("#clickToClear").on("click", function (){
+
+    $("#resultsHere").empty();
+
+  });
+    
+</script>
+
+
+</body>
+
+</html>

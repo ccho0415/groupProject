@@ -12,7 +12,7 @@
 #newspaperIcon{
   float: left;
   position: absolute;
-  margin-top: 20px;
+  margin-top: 0px;
 }
 .panel > .panel-heading {
     background-image: none;
@@ -43,24 +43,24 @@
 @media screen and (max-width: 980px){
   #titleText{
   font-size: 45px;
-  margin-left: 50px; 
+  margin-left: 70px;
 }
 #newspaperIcon{
   float: left;
   position: absolute;
-  margin-top: 5px;
+  margin-top: -15px;
 }
 @media screen and (max-width: 768px){
   #newspaperIcon{
   float: left;
   position: absolute;
-  margin-top: 0px;
+  margin-top: -15px;
   margin-left: 20px;
 }
 }
 @media screen and (max-width: 640px){
   #titleText{
   font-size: 40px;
-  margin-left: 80px; 
+  margin-left: 90px; 
 }
   }
